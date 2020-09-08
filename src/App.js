@@ -1,35 +1,44 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import image2 from './images/image01.jpg';
-import image1 from './images/image02.jpg';
-import image3 from './images/image03.jpg';
+import { Container } from 'react-bootstrap';
+import Home from './components/Home';
+import Cart from './components/Cart';
+import Signin from './components/Signin';
+import Register from './components/Register';
+import women from './routes/women';
+import womenDetails from './routes/womenDetails';
+import men from './routes/men';
+import kids from './routes/kids';
+import accessories from './routes/accessories';
 
 
-import { Container, Carousel } from 'react-bootstrap';
+
+
 
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
       <Container>
-        <Header />
-        <Carousel>
-                  <Carousel.Item>
-                        <img className="d-block w-100" src={ image1 } alt="First slide"/>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                        <img className="d-block w-100" src={ image2 } alt="Second slide"/>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                        <img className="d-block w-100" src={ image3 } alt="Third slide"/>
-                  </Carousel.Item>
-            </Carousel>
-        <br />
+        <Router>
+          <Header />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/cart/:id" component={Cart} />
+              <Route path="/signin" component={Signin} />
+              <Route exact path="/women" component={women} />
+              <Route path="/womenDetails/:id" component={womenDetails} />
+              <Route exact path="/men" component={men} />
+              <Route exact path="/kids" component={kids} />
+              <Route exact path="/accessories" component={accessories} />
+              <Route path="register" component={Register} />
+            </Switch>
+          </Router>
         <Footer />
       </Container>
-      
-    </div>
+    </React.Fragment>
   );
 }
 
