@@ -8,7 +8,7 @@ import Home from './components/Home';
 import Cart from './components/Cart';
 import Signin from './components/Signin';
 import Register from './components/Register';
-import women from './routes/women';
+import Women from './routes/Women';
 import womenDetails from './routes/womenDetails';
 import men from './routes/men';
 import kids from './routes/kids';
@@ -28,7 +28,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/cart/:id" component={Cart} />
               <Route path="/signin" component={Signin} />
-              <Route exact path="/women" component={women} />
+              <Route exact path="/women" component={Women} />
               <Route path="/womenDetails/:id" component={womenDetails} />
               <Route exact path="/men" component={men} />
               <Route exact path="/kids" component={kids} />

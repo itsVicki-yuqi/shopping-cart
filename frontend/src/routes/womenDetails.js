@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Image, Col, Row, Breadcrumb, ListGroup, Card, Button, Form } from 'react-bootstrap';
 import data from '../data';
-import { Link } from 'react-router-dom';
 
 function womenDetails (props) {
       //console.log(props.match.params.id);
