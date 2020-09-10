@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.cartHeader {
+  list-style: none;
+  justify-content: space-between;
+  display: flex;
+  align-items: flex-end;
+}
+.cartHr {
+  background-color: black;
+}
+.cartDiv{
+  border: 1rem 0;
+}
+.cartList{
+  border-bottom: .1rem #c0c0c0 solid;
+}

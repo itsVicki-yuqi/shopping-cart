@@ -13,6 +13,7 @@ import WomenDetails from './routes/WomenDetails';
 import men from './routes/men';
 import kids from './routes/kids';
 import accessories from './routes/accessories';
+import Shipping from './components/Shipping'
 
 
 
@@ -26,8 +27,9 @@ function App() {
           <Header />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/cart/:id" component={Cart} />
+              <Route path="/cart/:id?" component={Cart} />
               <Route path="/signin" component={Signin} />
+              <Route path="/shipping" component={Shipping} />
               <Route exact path="/women" component={Women} />
               <Route path="/womenDetails/:id" component={WomenDetails} />
               <Route exact path="/men" component={men} />

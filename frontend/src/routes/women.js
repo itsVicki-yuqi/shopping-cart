@@ -16,8 +16,8 @@ function Women(props) {
                   //
             };
       }, [])
-      console.log(loading);
-      console.log(products);
+      //console.log(loading);
+      //console.log(products);
       return (
             <Container>{
                   <Row className="d-flex flex-wrap">{

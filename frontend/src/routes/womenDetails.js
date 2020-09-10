@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { Container, Image, Col, Row, Breadcrumb, ListGroup, Card, Button, Form } from 'react-bootstrap';
+import { Container, Image, Col, Row, Breadcrumb, ListGroup, Card, Button, Form} from 'react-bootstrap';
 import { detailsProduct } from '../actions/productActions';
 
 function WomenDetails (props) {
+      const [qty, setQty] = useState(1);
       const productDetails = useSelector(state => state.productDetails);
       const {product, loading, error} = productDetails;
       const dispatch = useDispatch();
-      console.log(props.match.params.id);
+      //console.log(props.match.params.id);
       useEffect(() => {
             dispatch(detailsProduct(props.match.params.id));
             return () => {
 
             };
-      }, [])
+      }, []);
+      const handleAddToCart = () => {
+            props.history.push("/cart/" + props.match.params.id + "?qty=" + qty);
+      }
       return (
             <Container style={{padding:'0 0'}}>
                   
@@ -46,19 +50,20 @@ function WomenDetails (props) {
                                           </ListGroup>
                                           <Card>
                                                 <Card.Body>
-                                                      <Card.Title>Status: {product.status}</Card.Title>
+                                                      <Card.Title>Status: {product.countInStock > 0 ? "In Stock" : "Out of Stock"}</Card.Title>
                                                             <Form>
                                                                   <Form.Group controlId="exampleForm.ControlSelect1">
                                                                         <Form.Label>Qty: </Form.Label>
-                                                                        <Form.Control as="select" className="mr-sm-2">
-                                                                              <option>1</option>
-                                                                              <option>2</option>
-                                                                              <option>3</option>
-                                                                              <option>4</option>
+                                                                        <Form.Control as="select" value={qty} onChange={(e) => {setQty(e.target.value)}} className="mr-sm-2">
+                                                                              {[...Array(product.countInStock).keys()].map(x => 
+                                                                                    <option key={x+1} value={x+1}>{x+1}</option>
+                                                                              )}
                                                                         </Form.Control>
                                                                   </Form.Group>
                                                             </Form>
-                                                      <Button variant="primary">Add To Cart !</Button>
+                                                      {product.countInStock > 0 ? <Button onClick={handleAddToCart} variant="primary">Add To Cart !</Button>
+                                                      : <Button variant="outline-dark">Out of Stock</Button>}
+                                                      
                                                 </Card.Body>
                                           </Card>
                                     </Col>
