@@ -16,10 +16,8 @@ import accessories from './routes/accessories';
 import Shipping from './components/Shipping'
 
 
-
-
-
 function App() {
+  
   return (
     <React.Fragment>
       <Container>
@@ -28,14 +26,14 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/cart/:id?" component={Cart} />
-              <Route path="/signin" component={Signin} />
+              <Route path="/signin" component={Signin}/>
               <Route path="/shipping" component={Shipping} />
               <Route exact path="/women" component={Women} />
               <Route path="/womenDetails/:id" component={WomenDetails} />
               <Route exact path="/men" component={men} />
               <Route exact path="/kids" component={kids} />
               <Route exact path="/accessories" component={accessories} />
-              <Route path="register" component={Register} />
+              <Route path="/register" component={Register} />
             </Switch>
           </Router>
         <Footer />

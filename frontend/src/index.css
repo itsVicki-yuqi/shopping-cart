@@ -27,3 +27,17 @@ code {
 .cartList{
   border-bottom: .1rem #c0c0c0 solid;
 }
+.signinHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.createaccountHeader {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.registerHeader {
+  display: flex;
+  justify-content: center;
+}
