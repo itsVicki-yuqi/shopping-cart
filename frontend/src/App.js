@@ -14,6 +14,7 @@ import men from './routes/men';
 import kids from './routes/kids';
 import accessories from './routes/accessories';
 import Shipping from './components/Shipping'
+import NewProduct from './components/NewProduct';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route exact path="/kids" component={kids} />
               <Route exact path="/accessories" component={accessories} />
               <Route path="/register" component={Register} />
+              <Route path="/newproduct" component={NewProduct} />
             </Switch>
           </Router>
         <Footer />
