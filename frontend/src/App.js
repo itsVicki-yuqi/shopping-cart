@@ -15,6 +15,8 @@ import kids from './routes/kids';
 import accessories from './routes/accessories';
 import Shipping from './components/Shipping'
 import NewProduct from './components/NewProduct';
+import Payment from './components/Payment';
+import Placeorder from './components/Placeorder';
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
               <Route exact path="/accessories" component={accessories} />
               <Route path="/register" component={Register} />
               <Route path="/newproduct" component={NewProduct} />
+              <Route path="/payment" component={Payment}/>
+              <Route path="/placeorder" component={Placeorder}/>
             </Switch>
           </Router>
         <Footer />

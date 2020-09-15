@@ -40,7 +40,9 @@ function NewProduct(props) {
       };
       const submitHandler = (e) => {
             e.preventDefault();
+            //console.log(id);
             dispatch(saveProduct({_id: id, name, image, category, price, countInStock, description}));
+            
       }
       const deleteHandler = (product) => {
             dispatch(deleteProduct(product._id));

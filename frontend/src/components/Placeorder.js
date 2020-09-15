@@ -1,37 +1,58 @@
 import React, { useEffect } from 'react';
-import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, ListGroup, Card, Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { createOrder } from '../actions/orderActions';
 
-function Cart (props) {
+function Placeorder (props) {
       const cart = useSelector(state => state.cart);
-      const {cartItems} = cart;
-      //console.log(cartItems);
-      const productId = props.match.params.id;
-      const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
+      const {cartItems, shipping, payment} = cart;
+
+      const orderCreate = useSelector(state => state.orderCreate);
+      const {loading, success, error, order} = orderCreate; 
+      if(!shipping.address){
+            props.history.push("/shipping");
+      }
+      if(!payment.paymentMethod){
+            props.history.push("/payment");
+      }
+      const itemsPrice = cartItems.reduce((a, c) => a+ c.price *c.qty, 0);
+      const shippingPrice = itemsPrice > 100 ? 0 : 10;
+      const taxPrice = 0.1025 * itemsPrice;
+      const totalPrice = itemsPrice + taxPrice + shippingPrice;
+
       const dispatch = useDispatch();
-      const removeFromCartHandler = (productId) => {
-            dispatch(removeFromCart(productId));
+      
+      const placeOrderHandler = () => {
+            dispatch(createOrder({
+                  orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice, taxPrice, totalPrice
+            }));
       }
+
       useEffect(() => {
-            if(productId) {
-                  dispatch(addToCart(productId, qty));
-            }
-      }, [])
-      const checkoutHandler = () => {
-            props.history.push("/signin?redirect=shipping");
-      }
+            if(success) {
+                  props.history.push("/order/" + order._id);
+            }      
+      }, [success])
       return(
             <Container>
                   <Row>
                         <Col md={9}>
                               <hr/>
                               <Container style={{padding: '0', display:'flex'}} className="cartHeader">
-                                    <h3>My Bag</h3>
-                                    <h4>{cartItems.reduce((a,c) => a + c.qty, 0)} items</h4>
+                                    <h3>My Order Preview</h3>
                               </Container>
                               <hr />
+                              <div>
+                                    {cart.shipping.address}, {cart.shipping.city},
+                                    {cart.shipping.state}, {cart.shipping.postalCode}, {cart.shipping.country}
+                              </div>
+                              <div>
+                                    <h3>Payment</h3>
+                                    <div>
+                                          Payment Method: {cart.payment.paymentMethod}
+                                    </div>
+                              </div>
                               <Container style={{padding: '0'}}>{
                                     cartItems.length === 0 ? 
                                     <h4 className="text-center">Cart is empty</h4> 
@@ -42,14 +63,9 @@ function Cart (props) {
                                                       <Col style={{padding: '0'}}><Image src={item.image}  style={{ width: '9rem' }}  alt="product"rounded/></Col>
                                                       <Col>
                                                             <Link to={"/womenDetails/" + item.product} style={{color:'black'}}>{item.name}</Link>
-                                                            <div style={{padding: '1rem 0'}}>Qty: 
-                                                                  <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>{
-                                                                        [...Array(item.countInStock).keys()].map(x =>
-                                                                        <option key={x+1} value={x+1}>{x+1}</option>      
-                                                                        )
-                                                                  }</select>
+                                                            <div style={{padding: '1rem 0'}}>Qty: {item.qty}
                                                             </div>
-                                                            <Button variant="outline-danger" type="button" onClick={() => removeFromCartHandler(item.product)} size="sm">Delete</Button>
+                        
                                                       </Col>
                                                 </ListGroup.Item>      
                                           )      
@@ -66,11 +82,13 @@ function Cart (props) {
                                           </Card.Title>
                                           <hr style={{color:'black', height:'3px'}} className="cartHr"/>
                                           <Card.Text>
-                                                Subtotal ({cartItems.reduce((a,c) => a + c.qty, 0)} items)
-                                                :
-                                                $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                                                Items : ${itemsPrice}
+                                                Shipping: ${shippingPrice}
+                                                Tax: ${taxPrice}
+                                                Subtotal:
+                                                $ {totalPrice}
                                           </Card.Text>
-                                          <Button variant="primary" onClick={checkoutHandler} disabled={cartItems.length===0}>Check Out</Button>
+                                          <Button variant="primary" onClick={placeOrderHandler} >PLACE ORDER</Button>
                                     </Card.Body>
                               </Card>
                         </Col>
@@ -80,4 +98,4 @@ function Cart (props) {
       )
 }
 
-export default Cart;
+export default Placeorder;

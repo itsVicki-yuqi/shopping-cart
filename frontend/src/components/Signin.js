@@ -10,11 +10,12 @@ function Signin(props) {
       const [password, setPassword] = useState('');
       const userSignin = useSelector(state => state.userSignin);
       const {loading, userInfo, error} = userSignin;
+      const redirect = props.location.search ? props.location.search.split("=")[1]:'/';
       //console.log(error)
       const dispatch = useDispatch();
       useEffect(() => {
             if(userInfo){
-                  props.history.push("/");
+                  props.history.push(redirect);
             }
             return () => {
                   
@@ -25,7 +26,7 @@ function Signin(props) {
             dispatch(signin(email, password));
       }
       return(
-            <Container className="justify-content-center" style={{width: '18rem', padding:'10rem 0'}}>
+            <Container className="justify-content-center" style={{width: '22rem', padding:'10rem 0'}}>
                   <h4 className="signinHeader"><b>Sign in to your account</b></h4>
                   <hr/>
                   <div>
@@ -47,7 +48,7 @@ function Signin(props) {
                   </Form>
                   <hr />
                   <h5 className="createaccountHeader">New to YS Shopping</h5>
-                  <Button block><Link to="/register">CREATE ACCOUNT</Link></Button>
+                  <Button block><Link to={redirect === "/" ? "register" : "register?redirect=" + redirect}>CREATE ACCOUNT</Link></Button>
             </Container>
       )
 }

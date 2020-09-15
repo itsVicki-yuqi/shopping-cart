@@ -11,11 +11,12 @@ function Register(props) {
       const [rePassword, setRePassword] = useState('');
       const userRegister = useSelector(state => state.userRegister);
       const {loading, userInfo, error} = userRegister;
+      const redirect = props.location.search ? props.location.search.split("=")[1]: "/";
       //console.log(error)
       const dispatch = useDispatch();
       useEffect(() => {
             if(userInfo){
-                  props.history.push("/");
+                  props.history.push(redirect);
             }
             return () => {
                   
@@ -26,7 +27,7 @@ function Register(props) {
             dispatch(register(name, email, password));
       }
       return(
-            <Container className="justify-content-center" style={{width: '18rem', padding:'10rem 0'}}>
+            <Container className="justify-content-center" style={{width: '22rem', padding:'10rem 0'}}>
                   <h4 className="registerHeader"><b>Create an account</b></h4>
                   <hr/>
                   <div>
@@ -56,7 +57,7 @@ function Register(props) {
                   </Form>
                   <hr />
                   <h5 className="createaccountHeader">Already have an account</h5>
-                  <Button variant="outline-primary" block><Link to="/signin">SIGN IN</Link></Button>
+                  <Button variant="outline-primary" block><Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect}>SIGN IN</Link></Button>
             </Container>
       )
 }

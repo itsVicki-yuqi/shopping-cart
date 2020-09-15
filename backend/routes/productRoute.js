@@ -9,7 +9,17 @@ router.get("/", async (req, res) => {
       res.send(products);
 });
 
-router.post("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
+      const product = await Product.findOne({_id: req.params.id});
+      if(product){
+            res.send(product);
+      }else{
+            res.send(404).send({message: "Product not found"});
+      }
+      
+});
+
+router.post("/", isAuth, isAdmin, async (req, res) => {
       const product = new Product({
             name: req.body.name,
             image: req.body.image,
@@ -45,6 +55,7 @@ router.put("/:id", isAuth, isAdmin, async (req, res) => {
 });
 
 router.delete("/:id", isAuth, isAdmin, async(req, res) =>{
+      //console.log(req);
       const deletedProduct = await Product.findById(req.params.id);
       if(deletedProduct){
             await deletedProduct.remove();
