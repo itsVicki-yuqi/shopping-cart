@@ -10,9 +10,9 @@ import Signin from './components/Signin';
 import Register from './components/Register';
 import Women from './routes/Women';
 import WomenDetails from './routes/WomenDetails';
-import men from './routes/men';
-import kids from './routes/kids';
-import accessories from './routes/accessories';
+import Men from './routes/Men';
+import Kids from './routes/Kids';
+import Accessories from './routes/Accessories';
 import Shipping from './components/Shipping'
 import NewProduct from './components/NewProduct';
 import Payment from './components/Payment';
@@ -34,9 +34,9 @@ function App() {
               <Route path="/shipping" component={Shipping} />
               <Route exact path="/women" component={Women} />
               <Route path="/womenDetails/:id" component={WomenDetails} />
-              <Route exact path="/men" component={men} />
-              <Route exact path="/kids" component={kids} />
-              <Route exact path="/accessories" component={accessories} />
+              <Route exact path="/men" component={Men} />
+              <Route exact path="/kids" component={Kids} />
+              <Route exact path="/accessories" component={Accessories} />
               <Route path="/register" component={Register} />
               <Route path="/newproduct" component={NewProduct} />
               <Route path="/payment" component={Payment}/>

@@ -5,7 +5,8 @@ import {getToken, isAuth, isAdmin} from '../util';
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-      const products = await Product.find({});
+      const productCategory = req.query.category ? {category: req.query.category} : {};
+      const products = await Product.find({ ...productCategory});
       res.send(products);
 });
 

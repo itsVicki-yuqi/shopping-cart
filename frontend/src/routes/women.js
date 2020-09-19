@@ -9,9 +9,11 @@ function Women(props) {
       //const [products, setProduct] = useState([]);
       const productList = useSelector(state => state.productList);
       const { products, loading, error } = productList;
+      const category = props.match.path ? (props.match.path.split("/")[1]) : 1;
+      console.log(props.match.params.id);
       const dispatch = useDispatch();
       useEffect(() => {
-            dispatch(listProducts());
+            dispatch(listProducts(category));
             return () => {
                   //
             };
