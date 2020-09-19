@@ -17,6 +17,7 @@ import Shipping from './components/Shipping'
 import NewProduct from './components/NewProduct';
 import Payment from './components/Payment';
 import Placeorder from './components/Placeorder';
+import Order from './components/Order';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
               <Route path="/newproduct" component={NewProduct} />
               <Route path="/payment" component={Payment}/>
               <Route path="/placeorder" component={Placeorder}/>
+              <Route path="/order/:id" component={Order} />
             </Switch>
           </Router>
         <Footer />

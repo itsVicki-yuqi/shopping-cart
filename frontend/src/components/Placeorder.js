@@ -31,7 +31,7 @@ function Placeorder (props) {
 
       useEffect(() => {
             if(success) {
-                  props.history.push("/order/" + order._id);
+                  props.history.push("/orders/" + order._id);
             }      
       }, [success])
       return(

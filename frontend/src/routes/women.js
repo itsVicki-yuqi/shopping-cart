@@ -32,7 +32,8 @@ function Women(props) {
                                                 <Link style={{ color: 'black' }} to={'/womenDetails/' + product._id}>{product.name}</Link>
                                           </Card.Title>
                                           <Card.Text>$ {product.price}</Card.Text>
-                                          <Button variant="primary">Add to Cart</Button>
+                                          <Link to={'/womenDetails/' + product._id}><Button variant="outline-primary">Add to Cart</Button></Link>
+                                          
                                           </Card.Body>
 
                                     </Card>

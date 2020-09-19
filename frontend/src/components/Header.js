@@ -1,6 +1,7 @@
 import React from 'react';
-import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Image } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Header() {
       const userSignin = useSelector(state=>state.userSignin);
@@ -18,6 +19,8 @@ function Header() {
                         <Nav.Link href="/accessories">ACCESSORIES</Nav.Link>
                    </Nav>
                   <Nav className="justify-content-end">
+                        <Link to="/cart"><Image alt="cart" src="/images/cartIcon.svg" width="30" height="30" style={{marginTop: '5px'}} className="d-inline-block"/></Link> 
+                        
                         {
                               userInfo ? <Nav.Link href="/profile">{userInfo.name}</Nav.Link> : <Nav.Link href="/signin">Sign in</Nav.Link>
                         }

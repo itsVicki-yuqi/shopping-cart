@@ -48,7 +48,7 @@ function Signin(props) {
                   </Form>
                   <hr />
                   <h5 className="createaccountHeader">New to YS Shopping</h5>
-                  <Button block><Link to={redirect === "/" ? "register" : "register?redirect=" + redirect}>CREATE ACCOUNT</Link></Button>
+                  <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect}><Button block>CREATE ACCOUNT</Button></Link>
             </Container>
       )
 }

@@ -20,5 +20,14 @@ router.post("/", isAuth, async(req, res) => {
 
 })
 
+router.get("/:id", async(req, res) => {
+      const order = await Order.findOne({_id: req.params.id});
+      if(order){
+            res.send(order);
+      }else{
+            res.send(404).send({message: "Order not found"});
+      }
+})
+
 
 export default router;
