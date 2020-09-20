@@ -7,7 +7,7 @@ function Header() {
       const userSignin = useSelector(state=>state.userSignin);
       const {userInfo} = userSignin;
       return (
-            <Navbar expand="lg" bg="light" variant="light" href="/">
+            <Navbar expand="lg" bg="light" variant="light" style={{paddingBottom: '2rem'}} href="/">
                   <Navbar.Brand href="/">
                         <img alt="logo" src="/images/logo.png" width="40" height="40" className="d-inline-block"/>{' '}
                         YS Shopping

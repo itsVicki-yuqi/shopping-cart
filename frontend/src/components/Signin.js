@@ -10,7 +10,7 @@ function Signin(props) {
       const [password, setPassword] = useState('');
       const userSignin = useSelector(state => state.userSignin);
       const {loading, userInfo, error} = userSignin;
-      const redirect = props.location.search ? props.location.search.split("=")[1]:'/';
+      const redirect = props.location.search ? props.location.search.split("=")[1]:'/profile';
       //console.log(error)
       const dispatch = useDispatch();
       useEffect(() => {

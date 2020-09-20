@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -18,6 +18,7 @@ import NewProduct from './components/NewProduct';
 import Payment from './components/Payment';
 import Placeorder from './components/Placeorder';
 import Order from './components/Order';
+import Profile from './components/Profile';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
               <Route path="/payment" component={Payment}/>
               <Route path="/placeorder" component={Placeorder}/>
               <Route path="/order/:id" component={Order} />
+              <Route path="/profile" component={Profile} />
             </Switch>
           </Router>
         <Footer />

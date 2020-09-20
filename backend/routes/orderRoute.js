@@ -20,6 +20,12 @@ router.post("/", isAuth, async(req, res) => {
 
 })
 
+//mine route needs to be in front of :id since it will try to get/mine
+router.get("/mine", isAuth, async (req, res) => {
+      const orders = await Order.find({ user: req.user._id });
+      res.send(orders);
+});
+
 router.get("/:id", async(req, res) => {
       const order = await Order.findOne({_id: req.params.id});
       if(order){
@@ -28,6 +34,9 @@ router.get("/:id", async(req, res) => {
             res.send(404).send({message: "Order not found"});
       }
 })
+
+
+
 
 
 export default router;
