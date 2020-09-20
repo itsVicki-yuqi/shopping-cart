@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Form, Button, Table, Tab, Row, Col, ListGroup, TabContainer } from 'react-bootstrap';
+import { Container, Form, Button, Tab, Row, Col, ListGroup } from 'react-bootstrap';
 import { logout, update } from '../actions/userActions';
 import { listMyOrders } from '../actions/orderActions';
 
